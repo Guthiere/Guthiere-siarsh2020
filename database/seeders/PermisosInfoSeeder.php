@@ -30,15 +30,17 @@ class PermisosInfoSeeder extends Seeder
                 'name'=>'Admin',
                 'slug'=>'admin',
                 'description'=>'Administrator',
-                'full-access'=>'yes'
+                'full_access'=>'yes',
+
             ]);
 
-            $useradmin = User::create([
+     /*        $useradmin = User::create([
                 'role_id'=>$roleadmin->id,
                 'name' =>'Admin',
                 'email' => 'Admin@admin.com',
-                'password' => Hash::make('admin'),
-            ]);
+                'password' => Hash::make('admin123'),
+                'current_team_id'=> $useradmin->id,
+            ]); */
 
                 //Permiso
         $permiso_all = [];
@@ -159,7 +161,7 @@ class PermisosInfoSeeder extends Seeder
                 Role::Create([
                     'name'=>'Registered User',
                     'slug'=>'registered.user',
-                    'description'=>'Registered User',
+                    'description'=>'registered user pending role assignment',
                     'full-access'=>'no'
                 ]);
 
