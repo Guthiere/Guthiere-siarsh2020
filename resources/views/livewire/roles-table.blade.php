@@ -1,9 +1,9 @@
 <div>
-    <x-slot name="header">
+ {{--    <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
             {{ __('Lista de Roles') }}
         </h2>
-    </x-slot>
+    </x-slot> --}}
     <div class="py-4">
         <div class="mx-auto max-w-8xl sm:px-6 lg:px-8">
             <div class="overflow-hidden bg-white shadow-xl sm:rounded-lg">
@@ -14,26 +14,26 @@
                         <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                             <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
 
-                                <table class="min-w-full divide-y divide-gray-200">
+                                <table class="min-w-full divide-y divide-gray-200 table-hover">
                                     <thead class="bg-gray-50">
                                     <tr>
 
-                                        <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                        <th scope="col" class="px-6 py-3 text-xs font-bold tracking-wider text-left text-gray-500 uppercase ">
                                             Name
                                         </th>
-                                        <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                        <th scope="col" class="px-6 py-3 text-xs font-bold tracking-wider text-left text-gray-500 uppercase">
                                             Slug
                                         </th>
-                                        <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                        <th scope="col" class="px-6 py-3 text-xs font-bold tracking-wider text-left text-gray-500 uppercase">
                                             Description
                                         </th>
-                                        <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                        <th scope="col" class="px-6 py-3 text-xs font-bold tracking-wider text-left text-gray-500 uppercase">
                                             Full Access
                                         </th>
-                                        <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                        <th scope="col" class="px-6 py-3 text-xs font-bold tracking-wider text-left text-gray-500 uppercase">
                                             Permisions
                                         </th>
-                                        <th scope="col" class="relative px-6 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase">
+                                        <th scope="col" class="relative px-6 py-3 text-xs font-bold tracking-wider text-center text-gray-500 uppercase">
                                             Acciones
                                         <span class="sr-only">Edit</span>
                                         </th>

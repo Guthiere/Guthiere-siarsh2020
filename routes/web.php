@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RoleController;
 use App\Http\Livewire\RolesTable;
 use App\Http\Livewire\UsersTable;
 use Illuminate\Support\Facades\Route;
@@ -24,9 +25,11 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+Route::middleware(['auth:sanctum', 'verified'])->resource('role',RoleController::class)->names('role');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('users',UsersTable::class)->name('users');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('roles',RolesTable::class)->name('roles');
+
+//Route::middleware(['auth:sanctum', 'verified'])->get('users',UsersTable::class)->name('users');
+//Route::middleware(['auth:sanctum', 'verified'])->get('roles',RolesTable::class)->name('roles');
 
 
