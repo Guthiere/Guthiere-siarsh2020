@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Permiso;
 use App\Models\Role;
 use Illuminate\Http\Request;
 
@@ -25,8 +26,9 @@ class RoleController extends Controller
      */
     public function create()
     {
+        $permisos = Permiso::get();
         //
-        return view('admin.roles.create');
+        return view('admin.roles.create',compact('permisos'));
     }
 
     /**
@@ -37,7 +39,8 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request);
+        return $request->all();
     }
 
     /**

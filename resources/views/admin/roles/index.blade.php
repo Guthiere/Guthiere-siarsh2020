@@ -14,6 +14,9 @@
                 <div class="py-4 mx-auto text-right mr-7 max-w-7xl sm:px-6 lg:px-8">
                     <a href={{ route('role.create') }} class="px-3 py-1 my-2 text-green-600 bg-green-300 rounded-md shadow-md hover:bg-green-700 hover:text-white">Crear</a>
                 </div>
+                @if ($errors->any())
+                    <x-alert tipo="danger" :mensaje="$errors"/>
+                @endif
                 <!-- This example requires Tailwind CSS v2.0+ -->
                     <div class="flex flex-col">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
