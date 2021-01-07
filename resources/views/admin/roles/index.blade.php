@@ -12,7 +12,7 @@
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="overflow-hidden bg-white shadow-xl sm:rounded-lg">
                 <div class="py-4 mx-auto text-right mr-7 max-w-7xl sm:px-6 lg:px-8">
-                    <a href={{ route('role.create') }} class="px-3 py-1 my-2 text-green-600 bg-green-300 rounded-md shadow-md hover:bg-green-700 hover:text-white">Crear</a>
+                    <a href={{ route('role.create') }} class="px-3 py-1 my-2 text-yellow-600 bg-yellow-300 rounded-md shadow-md hover:bg-yellow-700 hover:text-white">Crear</a>
                 </div>
                 @if ($errors->any())
                     <x-alert tipo="danger" :mensaje="$errors"/>
@@ -74,7 +74,7 @@
                                                         </span>
                                                     </td>
 
-                                                    <td class="px-6 py-4 text-sm font-medium text-center whitespace-nowrap">
+                                                    <td class="max-w-full px-6 py-4 text-sm font-medium text-center whitespace-nowrap">
                                                         <a href={{ route('role.show',$role->id) }} class="px-3 py-1 text-green-500 bg-green-300 rounded-md hover:bg-green-700 hover:text-white">Show</a>
                                                         <a href={{ route('role.edit',$role->id) }} class="px-4 py-1 mx-2 text-indigo-500 bg-indigo-300 rounded-md hover:bg-indigo-700 hover:text-white" >Edit</a>
 

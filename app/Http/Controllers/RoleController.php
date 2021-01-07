@@ -15,7 +15,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::orderBy('id','ASC')->paginate(2);
+        $roles = Role::orderBy('id','ASC')->paginate(5);
         return view('admin.roles.index',compact('roles'));
     }
 
@@ -40,7 +40,21 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         //dd($request);
-        return $request->all();
+        $request->validate([
+            'name'  => 'required|max:50|unique:roles,name',
+            'slug'  => 'required|max:50|unique:roles,name',
+            'full_access' => 'required|in:yes,no',
+        ]);
+
+        $role = Role::create($request->all());
+
+        if($request->get('permiso')){
+
+            //return $request->all();
+            $role->permisos()->sync($request->get('permiso'));
+        }
+        return redirect()->route('role.index')/* ->with('status_success','El rol se ha creado satisfactoriamente') */;
+
     }
 
     /**
@@ -66,6 +80,9 @@ class RoleController extends Controller
     public function edit(Role $role)
     {
         //
+        $permisos = Permiso::get();
+        $roles = Role::orderBy('id','ASC');
+        return view('admin.roles.edit',compact('roles','permisos'));
     }
 
     /**
