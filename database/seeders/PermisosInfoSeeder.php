@@ -162,7 +162,7 @@ class PermisosInfoSeeder extends Seeder
                     'name'=>'Registered User',
                     'slug'=>'registered.user',
                     'description'=>'registered user pending role assignment',
-                    'full-access'=>'no'
+                    'full_access'=>'no'
                 ]);
 
                 $roleregistered = Role::where('slug','registered.user')->first();

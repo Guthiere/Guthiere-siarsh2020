@@ -52,8 +52,9 @@ class RoleController extends Controller
     public function show(Role $role)
     {
         //
+        $permisos = Permiso::get();
         $roles = Role::orderBy('id','ASC')->paginate(2);
-        return view('admin.roles.show',compact('roles'));
+        return view('admin.roles.show',compact('roles','permisos'));
     }
 
     /**
