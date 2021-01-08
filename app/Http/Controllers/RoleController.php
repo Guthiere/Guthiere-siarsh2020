@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Permiso;
 use App\Models\Role;
+use App\Models\Permiso;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class RoleController extends Controller
 {
@@ -15,6 +16,7 @@ class RoleController extends Controller
      */
     public function index()
     {
+        Gate::authorize('tAccess','role.index');
         $roles = Role::orderBy('id','ASC')->paginate(5);
         return view('admin.roles.index',compact('roles'));
     }
@@ -26,6 +28,7 @@ class RoleController extends Controller
      */
     public function create()
     {
+        Gate::authorize('tAccess','role.create');
         $permisos = Permiso::get();
         //
         return view('admin.roles.create',compact('permisos'));
@@ -39,6 +42,7 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
+        Gate::authorize('tAccess','role.create');
         //dd($request);
         $request->validate([
             'name'  => 'required|max:50|unique:roles,name',
@@ -48,11 +52,11 @@ class RoleController extends Controller
 
         $role = Role::create($request->all());
 
-        if($request->get('permiso')){
+        //if($request->get('permiso')){
 
             //return $request->all();
             $role->permisos()->sync($request->get('permiso'));
-        }
+        //}
         return redirect()->route('role.index')/* ->with('status_success','El rol se ha creado satisfactoriamente') */;
 
     }
@@ -65,10 +69,15 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
+        $this->authorize('tAccess','role.show');
         //
+        $permiso_role=[];
+        foreach ($role->permisos as $permiso) {
+            $permiso_role[]=$permiso->id;
+        }
+
         $permisos = Permiso::get();
-        $roles = Role::orderBy('id','ASC')->paginate(2);
-        return view('admin.roles.show',compact('roles','permisos'));
+        return view('admin.roles.show',compact('role','permisos','permiso_role'));
     }
 
     /**
@@ -79,10 +88,15 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
+       $this->authorize('tAccess','role.edit');
         //
+        $permiso_role=[];
+        foreach ($role->permisos as $permiso) {
+            $permiso_role[]=$permiso->id;
+        }
+
         $permisos = Permiso::get();
-        $roles = Role::orderBy('id','ASC');
-        return view('admin.roles.edit',compact('roles','permisos'));
+        return view('admin.roles.edit',compact('role','permisos','permiso_role'));
     }
 
     /**
@@ -94,7 +108,20 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
+       $this->authorize('tAccess','role.edit');
         //
+        $request->validate([
+            'name'  => 'required|max:50|unique:roles,name,'.$role->id,
+            'slug'  => 'required|max:50|unique:roles,name,'.$role->id,
+            'full_access' => 'required|in:yes,no',
+        ]);
+
+        $role->update($request->all());
+
+        //if($request->get('permiso')){
+            $role->permisos()->sync($request->get('permiso'));
+       // }
+        return redirect()->route('role.index')/* ->with('status_success','El rol se ha Actualizado satisfactoriamente') */;
     }
 
     /**
@@ -105,6 +132,9 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
+       $this->authorize('tAccess','role.destroy');
         //
+        $role->delete();
+        return redirect()->route('role.index')/* ->with('status_success','El rol se ha Eliminado satisfactoriamente') */;
     }
 }

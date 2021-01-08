@@ -75,10 +75,16 @@
                                                     </td>
 
                                                     <td class="max-w-full px-6 py-4 text-sm font-medium text-center whitespace-nowrap">
-                                                        <a href={{ route('role.show',$role->id) }} class="px-3 py-1 text-green-500 bg-green-300 rounded-md hover:bg-green-700 hover:text-white">Show</a>
-                                                        <a href={{ route('role.edit',$role->id) }} class="px-4 py-1 mx-2 text-indigo-500 bg-indigo-300 rounded-md hover:bg-indigo-700 hover:text-white" >Edit</a>
+                                                        <a href={{ route('role.show',$role->id) }} class="px-3 py-1 text-green-500 bg-green-300 rounded-md hover:bg-green-700 hover:text-white">Mostrar</a>
+                                                        <a href={{ route('role.edit',$role->id) }} class="px-4 py-1 mx-2 text-indigo-500 bg-indigo-300 rounded-md hover:bg-indigo-700 hover:text-white" >Editar</a>
+                                                        <form action="{{ route('role.destroy',$role->id) }}" method ="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button class="px-2 py-1 text-red-500 bg-red-300 rounded-md hover:bg-red-700 hover:text-white">Eliminar</button>
 
-                                                        <a href={{ route('role.destroy',$role->id) }} class="px-2 py-1 text-red-500 bg-red-300 rounded-md hover:bg-red-700 hover:text-white">Delete</a>
+                                                        </form>
+
+
                                                     </td>
                                                 </tr>
                                         @endforeach

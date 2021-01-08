@@ -32,7 +32,7 @@
                                                     Rol
                                                 </label>
                                                 <div class="flex mt-1 rounded-md shadow-sm">
-                                                    <input type="text" name="name" id="name" class="block w-full mt-1 border-gray-300 rounded-none focus:ring-indigo-500 focus:border-indigo-500 rounded-r-md sm:text-sm" placeholder="Nombre Role">
+                                                    <input value="{{ old('name') }}" type="text" name="name" id="name" class="block w-full mt-1 border-gray-300 rounded-none focus:ring-indigo-500 focus:border-indigo-500 rounded-r-md sm:text-sm" placeholder="Nombre Role">
                                                 </div>
                                             </div>
                                         </div>
@@ -43,7 +43,7 @@
                                                     Slug
                                                 </label>
                                                 <div class="flex mt-1 rounded-md shadow-sm">
-                                                    <input type="text" name="slug" id="slug" class="block w-full mt-1 border-gray-300 rounded-none focus:ring-indigo-500 focus:border-indigo-500 rounded-r-md sm:text-sm" placeholder="Role Slug">
+                                                    <input value="{{ old('slug') }}" type="text" name="slug" id="slug" class="block w-full mt-1 border-gray-300 rounded-none focus:ring-indigo-500 focus:border-indigo-500 rounded-r-md sm:text-sm" placeholder="Role Slug">
                                                 </div>
                                             </div>
                                         </div>
@@ -53,7 +53,7 @@
                                                 Descripción
                                             </label>
                                             <div class="mt-1">
-                                                <textarea id="description" name="description" rows="3" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Descripcion acerca del rol."></textarea>
+                                                <textarea id="description" name="description" rows="3" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Descripcion acerca del rol.">{{ old('description') }}</textarea>
                                             </div>
                                         </div>
 
@@ -87,11 +87,11 @@
                                         </label>
                                         <div class="flex mt-1 ">
                                             <div class="flex items-center h-5">
-                                                <input value="yes" id="full_accessyes" name="full_access" type="radio" class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
+                                                <input value="yes" id="full_accessyes" name="full_access" type="radio" class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500" @if (old('full_access')=='yes') checked @endif>
                                                 <label for="full_accessyes" class="mx-4 font-medium" >Yes</label>
                                             </div>
                                             <div class="flex items-center h-5">
-                                                <input checked value="no"  id="full_accessno" name="full_access" type="radio" class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
+                                                <input @if (old('full_access')=='no') checked @endif @if (old('full_access')=== null) checked @endif  value="no"  id="full_accessno" name="full_access" type="radio" class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500" >
                                                 <label for="full_accessno" class="mx-4 font-medium" >No</label>
                                             </div>
                                         </div>
@@ -125,7 +125,7 @@
                                                                     <div class="flex items-center">
 
                                                                         <div class="flex items-center h-5">
-                                                                            <input id="permiso_{{ $permiso->id }}" value="{{ $permiso->id }}" name="permiso[]" type="checkbox" class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
+                                                                            <input @if (is_array(old('permiso')) && in_array("$permiso->id",old('permiso'))) checked  @endif id="permiso_{{ $permiso->id }}" value="{{ $permiso->id }}" name="permiso[]" type="checkbox" class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
                                                                         </div>
 
                                                                         <div class="ml-4">
@@ -164,6 +164,7 @@
                             </div>
                         </div>
                     </form>
+                    
                 </div>
             </div>
         </div>

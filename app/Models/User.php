@@ -10,6 +10,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
+use App\Traits\UserTrait;
 
 class User extends Authenticatable
 {
@@ -19,6 +20,7 @@ class User extends Authenticatable
     use HasTeams;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use UserTrait; 
 
     /**
      * The attributes that are mass assignable.
@@ -59,8 +61,6 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function role()
-    {
-        return $this->hasMany(Role::class);
-    }
+
+
 }
